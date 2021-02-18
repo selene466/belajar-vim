@@ -1,0 +1,709 @@
+===================================================================================
+
+-------------------------------------------------------------
+    DAFTAR ISI:
+-------------------------------------------------------------
+    =PENG   1. Pengenalan Singkat
+    =PENA   1.A. NORMAL MODE
+    =PENB   1.B. INSERT MODE
+    =PENC   1.C. VISUAL MODE
+    =OPER   2. Operasi File
+    =UNDO   3. Undo & Redo
+    =SCRO   4. Scroll Text
+    =MNAA   5.A. Motion - Navigasi Dasar h-j-k-l
+    =MNAB   5.B. Motion - Navigasi Line - $0%^
+    =MNAC   5.C. Motion - Navigasi Line - fFtT
+    =MPEL   5.D. Motion - Pergi ke Line
+    =MNAK   5.E. Motion - Navigasi Kata - wWbBeE
+    =MNAH   5.F. Motion - Navigasi HLM
+    =MNAP   5.G. Motion - Navigasi Paragraf
+    =MNAT   5.H. Motion - Text Object
+    =CARI   5.I. Motion - Pencarian Karakter
+    =OPHA   6.A. Operator - Hapus karakter
+    =OPRE   6.B. Operator - Replace karakter - r
+    =COPY   6.C. Operator - Copy & Paste ypP
+    =ODOT   6.D. Operator - . (dot)
+    =INSE   7. INSERT MODE - iIaAoOsScC gi
+    =VISU   8. VISUAL MODE & VISUAL BLOCK MODE - vV Ctrl+v gv
+    =REFE   9. REFERENSI
+-------------------------------------------------------------
+
+Gunakan fitur searching dengan menekan "/" sesuai index di daftar isi.
+
+    Misal:
+    /=CARI
+
+    n = Maju hasil pencarian
+    N = Mundur hasil pencarian
+
+Akan meloncat ke bagian "Pencarian Karakter".
+Untuk kembali lagi ke atas sini, tekan key "gg".
+Untuk keluar dari tutorial ini, tekan key "ZQ".
+
+Silahkan baca sekilas seluruh file ini, ingat "gg"!
+
+Gunakan fitur pencarian untuk memudahkan navigasi.
+
+
+===================================================================================
+
+
+-------------------------------
+1.   =PENG : Pengenalan Singkat
+-------------------------------
+
+vim adalah modal editor, terdapat 3 mode dasar di dalam vim, yaitu:
+- NORMAL MODE
+- INSERT MODE
+- VISUAL MODE
+
+Status suatu mode bisa dilihat dibagian kiri bawah layar.
+
+Bahasa dasar vim, terdiri dari:
+ ____           ____           ____
+||c ||    |    ||o ||    |    ||m ||
+||__||  --+--  ||__||  --+--  ||__||
+|/__\|    |    |/__\|    |    |/__\|
+
+   c o m
+------------
+c = count
+o = operator
+m = motion
+
+Contoh:
+4dh
+    4 = count
+    d = operator
+    h = motion
+
+    Akan menghasilkan command:
+    4 - Count
+    d - Operator, hapus karakter diikuti motion
+    h - Motion, cursor ke kiri
+
+    Menjadi, "hapus karakter ke kiri lakukan 4 kali".
+
+Kita juga bisa menggunakan operator & motion saja tanpa count, atau
+count & motion tanpa operator.
+
+-------------------------------------------------------------
+com / ocm   =   count-operator-motion / operator-count-motion
+om          =   operator-motion
+cm          =   count-motion
+-------------------------------------------------------------
+
+Terlihat rumit, namun sebenarnya sederhana, idenya adalah:
+
+  "Jika kita melakukan hal yang sama berulang-ulang, maka
+  kita menyuruh komputer untuk melakukan hal itu.
+  Dan komputer adalah jagonya melakukan hal berulang-ulang."
+  ----------------------------------------------------------
+
+Learning curve menggunakan vim memang agak panjang, yakinkan bahwa hari ini
+lebih baik daripada hari kemarin.
+
+Ikuti tutorial ini sampai habis, luangkan waktu 10 - 20 menit / hari
+untuk berlatih.
+
+
+------------------------
+1.A. =PENA : NORMAL MODE
+------------------------
+
+Di mode ini setiap key adalah command, termasuk untuk navigasi.
+
+Ini adalah mode default & seharusnya kita berada pada mode ini
+bahkan setiap selesai melakukan insert.
+
+Ingat "c o m"!
+
+Tutorial singkat ini akan sering melibatkan NORMAL MODE.
+
+
+------------------------
+1.B. =PENB : INSERT MODE
+------------------------
+
+Anggap insert mode seperti pada notepad, ketika kita mengetik
+suatu huruf di keyboard maka huruf tersebut akan masuk ke dalam
+text editor.
+
+- Untuk masuk ke INSERT MODE, bisa menekan key "i".
+- Untuk kembali ke NORMAL MODE, bisa menekan key "Esc" atau "Ctrl + [".
+
+
+------------------------
+1.C. =PENC : VISUAL MODE
+------------------------
+
+Mode ini digunakan untuk melakukan selection / pemilihan block pada vim,
+yang kemudian bisa dilanjutkan melakukan operator ataupun motion.
+
+- Sama seperti NORMAL MODE, bisa menekan key "Esc" atau "Ctrl + [".
+
+
+===================================================================================
+
+
+-------------------------
+2.   =OPER : Operasi File
+-------------------------
+
+Dari NORMAL MODE:
+    :w            - Menyimpan file
+    :w NAMAFILE   - Menyimpan file, diikuti tujuan / nama file
+                    Setara save-as
+    :wq           - Menyimpan file lalu keluar vim
+    :q            - Keluar vim
+    :q!           - Keluar vim tanpa menyimpan file
+    :e NAMAFILE   - Membuka file, diikuti tujuan / nama file
+    :x            - Jika ada perubahan pada file yang sedang dibuka, maka menyimpan
+                    ke file lalu keluar vim
+                    Jika tidak ada perubahan pada file, maka keluar vim
+
+ZZ - Sama dengan ":x"
+ZQ - Sama dengan ":q!"
+
+
+===================================================================================
+
+
+------------------------
+3.   =UNDO : Undo & Redo
+------------------------
+
+u          - undo
+Ctrl + r   - redo
+
+
+===================================================================================
+
+
+------------------------
+4.   =SCRO : Scroll Text
+------------------------
+
+Ctrl + b    - Scroll text 1 page ke atas
+Ctrl + f    - Scroll text 1 page ke bawah
+Ctrl + u    - Scroll text 1/2 page ke atas
+Ctrl + d    - Scroll text 1/2 page ke bawah
+Ctrl + y    - Scroll text ke atas 1 line
+Ctrl + e    - Scroll text ke bawah 1 line
+
+
+===================================================================================
+
+
+--------------------------------------------
+5.A. =MNAA : Motion - Navigasi Dasar h-j-k-l
+--------------------------------------------
+
+        k
+        ^
+    h <   > l
+        v
+        j
+
+    h - Cursor ke kiri
+    j - Cursor ke bawah
+    k - Cursor ke atas
+    l - Cursor ke kanan
+
+~Contoh----@
+^ arahkan cursor ke sini, lalu coba lakukan navigasi h-j-k-l.
+
+Selanjutnya jika menemukan "~Contoh----@" maka arahkan cursor
+ke karakter tilde (~) diawal baris.
+Untuk ke bawah bisa tekan "j". Lalu coba mempraktikan apa yang sudah dipelajari.
+
+Coba arahkan cursor ke huruf "M".
+Lalu tekan "j", ikuti huruf "o" sampai ke huruf "K", hindari ".".
+
+@---------@
+|  Masuk  |
+|..o......|
+|..o..ooo.|
+|..o..o.o.|
+|..oooo.o.|
+|.......o.|
+|.ooooooo.|
+|.o.......|
+| Keluar  |
+@---------@
+
+Coba juga dengan count. Misal: 4j 3l 2k 2l 4j 6h 2j
+
+
+------------------------------------------
+5.B. =MNAB : Motion - Navigasi Line - $0%^
+------------------------------------------
+
+    $ - Pergi ke akhir baris
+    0 - Pergi ke awal baris
+    % - Pergi ke suatu tanda kurung / kurawal / bracket, tekan lagi untuk ke depan
+    ^ - Pergi ke awal kalimat, bukan indent
+
+~Contoh----@
+if (kondisi == true)
+    total = harga_barang * jumlah barang;
+@----------@
+
+
+------------------------------------------
+5.C. =MNAC : Motion - Navigasi Line - fFtT
+------------------------------------------
+
+Motion ini untuk line di mana cursor berada.
+    f[x] - Maju sampai suatu karakter "x"
+    F[x] - Mundur sampai suatu karakter "x"
+    t[x] - Maju sampai suatu karakter "x", tapi taruh cursor
+           di depan karakter tersebut
+    T[x] - Mundur sampai suatu karakter "x", tapi taruh cursor
+           di akhir karakter tersebut
+    ;    - Untuk mengulangi motion f / F / t / T
+    ,    - Sama seperti ";", tapi arah sebaliknya
+
+x = Suatu karakter / simbol
+
+Contoh:
+f"
+fW;;,,
+Fm
+
+~Contoh----@
+System.out.print("Halo Dunia!");
+System.out.println("World Wide Web");
+@----------@
+
+
+-----------------------------------
+5.D. =MPEL : Motion - Pergi ke Line
+-----------------------------------
+
+    gg      - Pergi ke line paling atas
+    G       - Pergi ke line paling bawah
+    gi      - Pergi ke line terakhir melakukan insert
+    gv      - Pergi ke line terakhir melakukan selection
+    [x]gg   - Pergi ke line "x"
+    [x]G    - Sama dengan [x]gg
+    [x]%    - Pergi ke line "x" persen dari seluruh line
+
+x = Nomor line (line number)
+
+
+--------------------------------------------
+5.E. =MNAK : Motion - Navigasi Kata - wWbBeE
+--------------------------------------------
+
+    w - Pergi ke awal suatu kata
+    W - Pergi ke awal suatu kata, kata dalam artian terpisah spasi
+    b - Mundur ke awal suatu kata
+    B - Mundur ke awal suatu kata, kata dalam artian terpisah spasi
+    e - Pergi ke akhir suatu kata
+    e - Pergi ke akhir suatu kata, kata dalam artian terpisah spasi
+
+~Contoh----@
+$data = "makan ayam";
+echo str_replace("ayam", "ikan", $data);
+@----------@
+
+
+----------------------------------
+5.F. =MNAH : Motion - Navigasi HLM
+----------------------------------
+
+    H - Cursor ke atas layar
+    L - Cursor ke bawah layar
+    M - Cursor ke tengah layar
+
+
+---------------------------------------
+5.G. =MNAP : Motion - Navigasi Paragraf
+---------------------------------------
+
+    {{ - Pergi ke paragraf sebelumnya
+    }} - Pergi ke paragraf selanjutnya
+
+
+---------------------------------
+5.H. =MNAT : Motion - Text Object
+---------------------------------
+
+Text object adalah motion KHUSUS, hanya bisa digunakan dalam VISUAL MODE atau
+setelah menekan key operator.
+
+Terdapat 2 key text object, yaitu "i" dan "a".
+"i" akan memilih semua value DI DALAM text object.
+"a" akan memilih semua value DI LUAR text object, termasuk spasi / whitespace.
+
+Motion ini dalah motion yang powerful.
+
+    [x][y]w - Memilih berdasarkan kata
+    [x][y]W - Memilih berdasarkan kata, kata dalam artian terpisah spasi
+    [x][y]s - Memilih berdasarkan kalimat
+    [x][y]p - Memilih berdasarkan paragraf
+    [x][y]b - Memilih berdasarkan pasangan simbol "(" dan ")"
+    [x][y]( - Sama seperti [x][y]b
+    [x][y]) - Sama seperti [x][y]b
+    [x][y]B - Memilih berdasarkan pasangan simbol "{" dan "}"
+    [x][y]{ - Sama seperti [x][y]B
+    [x][y]} - Sama seperti [x][y]B
+    [x][y][ - Memilih berdasarkan pasangan simbol "[" dan "]"
+    [x][y]] - Sama seperti [x][y][
+    [x][y]< - Memilih berdasarkan pasangan simbol "<" dan ">"
+    [x][y]> - Sama seperti [x][y]<
+    [x][y]" - Memilih berdasarkan tanda petik dua
+    [x][y]' - Memilih berdasarkan tanda petik
+    [x][y]` - Memilih berdasarkan tanda backticks
+    [x][y]t - Memilih berdasarkan tag HTML
+
+x = operator atau key "v"
+y = "i" atau "a"
+
+Coba ganti array di Contoh 1 sesuai di atasnya.
+
+Secara praktikal kita bisa melakukan:
+fx
+ciw
+satu
+NORMAL MODE
+;
+ciw
+dua
+NORMAL MODE
+;
+ciw
+tiga
+
+~Contoh 1----@
+array = ["satu", "dua", "tiga"]
+array = ["xxxx", "xxx", "xxxx"]
+@------------@
+
+Coba pindahkan potongan kode di Contoh 2 dengan selection.
+
+Secara praktikal kita bisa mengarahkan cursor ke "h" pada "harga", lalu
+menekan key:
+viB
+d
+jP
+
+~Contoh 2----@
+if (barang > 1) {
+    harga = harga_barang * jumlah
+    diskon = 0.2
+    total_harga = harga - (harga * diskon)
+} else { // paste di bawah
+}
+@------------@
+
+Coba ganti "ddd" ke "Judul" di dalam tag HTML div berikut.
+Gunakan "cit"!
+
+~Contoh 3----@
+<div class="header">Judul</div>
+<div class="header">ddd</div>
+@------------@
+
+
+----------------------------------------
+5.I. =CARI : Motion - Pencarian Karakter
+----------------------------------------
+
+    /[x] - Mencari karakter, lalu tekan <Enter>
+    n    - Hasil pencarian maju
+    N    - Hasil pencarian mundur
+
+    *    - Maju mencari kata yang sama di mana cursor berada
+    #    - Mundur mencari kata yang sama di mana cursor berada
+
+x = karakter / kata / apapun yang ingin dicari
+
+Contoh:
+/CARI
+
+Selain bisa digunakan untuk mencari sesuatu, "/" juga bisa
+digunakan untuk motion pada operator.
+
+Coba ganti value array berikut sehingga hanya ada "Tikus".
+Secara praktikal kita bisa menggunakan:
+f"
+d/"Ti
+
+~Contoh----@
+data_array = ["Tikus"]
+data_array = ["Tomat", "Lobak", "Bayam", "Tikus"]
+@----------@
+
+
+===================================================================================
+
+
+--------------------------------------
+6.A. =OPHA : Operator - Hapus karakter
+--------------------------------------
+
+    x       - Hapus karakter di mana cursor berada
+    d[c][m] - Hapus karakter di mana cursor berada, diikuti count & motion
+    d[m]    - Hapus karakter di mana cursor berada, diikuti motion
+    [c]dd   - Hapus line
+
+c = Jumlah count
+m = Motion
+
+Seperti pada pengenalan "com", kita bisa menambah count pada operator.
+
+Setiap text yang dihapus menggunakan "d" & "x" akan masuk ke dalam buffer
+clipboard vim dan kita bisa paste menggunakan "p", jadi operator ini juga bisa
+digunakan untuk operasi cut-paste.
+
+Contoh:
+dw
+d$
+d^
+dh
+3x
+
+Coba hapus karakter yang salah di bawah ini.
+
+~Contoh 1----@
+Budi sedang bermain bola.
+Budi sedang bermain bolajff.fyt
+@------------@
+
+Coba koreksi kalimat berikut, hapus kata "sangat salah sekali".
+
+Secara praktikal kita bisa melakukan:
+fs
+3dw atau d3w
+
+~Contoh 2----@
+Kalimat ini benar.
+Kalimat ini sangat salah sekali benar.
+@------------@
+
+Coba koreksi kalimat berikut, dengan menggunakan "x" dan "p".
+Ingat! undo dengan "u".
+
+~Contoh 3----@
+Di pucuk pohon cemara.
+iD upcuk pohno ceamra.
+@------------@
+
+Coba pindahkan kata "mobil" di kalimat berikut.
+Gunakan "daw" dan "p"!
+
+~Contoh 4----@
+Budi membeli mobil baru.
+mobil Budi membeli baru.
+@------------@
+
+
+--------------------------------------------
+6.B. =OPRE : Operator - Replace karakter - r
+--------------------------------------------
+
+    r[x] - Replace karakter di mana cursor berada, diikuti karakter pengganti
+    R    - Replace karakter di mana cursor berada tanpa batasan sampai
+           kembali ke NORMAL MODE
+
+x = Karakter / simbol
+
+Coba koreksi karakter yang salah di bawah ini.
+
+~Contoh----@
+Ular melingkar di atas pagar.
+Ular molongkor do utas pegal?
+@----------@
+
+
+----------------------------------------
+6.C. =OPRE : Operator - Copy & Paste ypP
+----------------------------------------
+
+NORMAL MODE
+    y[c][m] - Copy line diikuti count, lalu motion
+    yy      - Copy line di mana cursor berada
+    p       - Paste setelah cursor berada
+    P       - Paste sebelum cursor berada
+
+    [c] = Jumlah count
+    [m] = Motion
+
+VISUAL MODE
+    y  - Copy text yang di highlight pada selection
+
+Coba koreksi kalimat salah dibawah ini sesuai kalimat diatasnya.
+Gunakan "y" atau "yiw" dan "p"!
+
+~Contoh 1----@
+satu biru dua biru tiga biru empat biru.
+satu biru dua  tiga  empat .
+@------------@
+
+Coba duplikat kalimat dibawah ini 4 kali dengan "yy" & "4p".
+Bandingkan dengan "yy" & "pppp".
+
+~Contoh 2----@
+Bambang bermain bola.
+> paste dibawah
+@------------@
+
+
+-------------------------------
+6.D. =ODOT : Operator - . (dot)
+-------------------------------
+
+Operator ini digunakan untuk mengulangi perubahan yang telah buat.
+
+Operator ini sangat powerful.
+
+Coba hapus "zzz" dari kalimat di bawah, secara praktikal kita bisa:
+fz
+de
+;.
+;.
+
+~Contoh 1----@
+Radjiman membeli gitar baru.
+Radjiman membelizzz gitarzzz baruzzz.
+@------------@
+
+Coba hapus "xxx" dari kalimat di bawah, secara praktikal kita bisa:
+fx
+daw
+;.
+;.
+
+~Contoh 2----@
+Rajin menabung pangkal kaya.
+Rajin xxx menabung xxx pangkal xxx kaya.
+@------------@
+
+Coba ganti semua value array di dalam tanda petik ke "xxx".
+Gunakan "ciw" dan "."!
+
+~Contoh 2----@
+barang = ["xxx", "xxx", "xxx"]
+barang = ["Buku", "Pena", "Penggaris"]
+@------------@
+
+
+===================================================================================
+
+
+----------------------------------------
+7.   =INSE : INSERT MODE - iIaAoOsScC gi
+----------------------------------------
+
+    i   - Masuk INSERT MODE di mana cursor berada
+    I   - Masuk INSERT MODE di awal kalimat, bukan indent
+    a   - Masuk INSERT MODE setelah cursor berada
+    A   - Masuk INSERT MODE di akhir kalimat
+    o   - Masuk INSERT MODE setelah line cursor berada
+    O   - Masuk INSERT MODE diatas line cursor berada
+    s   - Hapus karakter di mana cursor berada, lalu masuk INSERT MODE
+    S   - Hapus seluruh line di mana cursor berada,
+          lalu masuk INSERT MODE
+    c[m]   - Sama seperti "d", namun setelah karakter terhapus
+             maka masuk INSERT MODE
+    C   - Hapus seluruh karakter di mana cursor berada sampai akhir line,
+          lalu masuk INSERT MODE
+    gi  - Masuk INSERT MODE di line terkahir dimana melakukan insert
+
+[m] = Motion
+
+Coba lengkapi judul dibawah ke "Suatu Judul".
+
+~Contoh----@
+<head>
+    <title>Suatu J</title>
+</head>
+@----------@
+
+Tambahan di dalam INSERT MODE:
+    Ctrl + h   - Hapus karakter setara backspace
+    Ctrl + j   - New Line / Enter
+
+    Key "Alt" mirip dengan Escape jika ditekan bersamaan dengan suatu key lain.
+    Misal:
+    Alt + h    - Ke NORMAL MODE, lalu geser cursor ke kiri
+    Alt + j    - Ke NORMAL MODE, lalu geser cursor ke bawah
+    Alt + k    - Ke NORMAL MODE, lalu geser cursor ke atas
+    Alt + l    - Ke NORMAL MODE, lalu geser cursor ke kanan
+
+
+===================================================================================
+
+
+-----------------------------------------------------------
+8.   =VISU : VISUAL MODE & VISUAL BLOCK MODE - vV Ctrl+v gv
+-----------------------------------------------------------
+
+Dari NORMAL MODE:
+    v[c][m]    - Melakukan selection berdasarkan KARAKTER diikuti motion
+    V[c][m]    - Melakukan selection berdasarkan LINE
+    Ctrl + v   - Melakukan selection VISUAL BLOCK MODE
+
+    gv         - Kembali menandai text yang terakhir ditandai
+
+c = Jumlah count
+m = Motion
+
+
+Coba lakukan selection secara bebas di paragraf berikut.
+
+~Contoh 2----@
+Lorem molestiae molestias accusamus non veritatis magni officia doloribus commodi?
+Quaerat inventore voluptatum aut harum quis tenetur.
+
+    Recusandae nulla recusandae accusamus voluptates tempore Voluptatum dolorum
+dolor nobis aspernatur qui inventore. Elit optio minima autem cumque dolor Numquam
+iste atque dolores.
+Adipisicing neque suscipit quaerat quo in quo suscipit. Ea excepturi sed repellat
+minima consequuntur Velit velit impedit laudantium iusto facere
+@------------@
+
+Coba select semua value di dalam bracket ([) di "Contoh 2".
+
+Kita bisa manual melakukan "V" di "Tepung Terigu" diikuti "j" sampai
+"Gula Pasir".
+Secara praktikal, kita bisa juga melakukan "Vi[".
+
+~Contoh 2----@
+daftar_belanja = [
+    "Tepung Terigu",
+    "Kopi",
+    "Telur",
+    "Gula Pasir",
+]
+@------------@
+
+Coba hapus comment "# " di "Contoh 3" dengan VISUAL BLOCK MODE.
+Ingat! hapus dengan operator "x".
+
+~Contoh 3----@
+# Tepung Terigu
+# Kopi
+# Telur
+# Gula Pasir
+@------------@
+
+
+===================================================================================
+
+
+----------------------
+9.    =REF : REFERENSI
+----------------------
+
+- https://github.com/shawncplus/vim-classes
+- :help
+
+===================================================================================
+    2021/02/18
+    Penulis: selene466
+
+    https://selene466.github.io
+===================================================================================
