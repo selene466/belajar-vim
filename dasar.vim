@@ -10,15 +10,16 @@ set mouse=a
 set nobackup
 set nowritebackup
 set noswapfile
+set noundofile
 
 
 " Line number
-set nuw=5
+set numberwidth=5
 set number
 
 
 " Search
-set hlsearch
+set nohlsearch
 set incsearch
 set ignorecase
 set smartcase

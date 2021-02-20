@@ -10,7 +10,7 @@
     =OPER   2. Operasi File
     =UNDO   3. Undo & Redo
     =SCRO   4. Scroll Text
-    =MNAA   5.A. Motion - Navigasi Dasar h-j-k-l
+    =NAVI   5.A. Motion - Navigasi Dasar h-j-k-l
     =MNAB   5.B. Motion - Navigasi Line - $0%^
     =MNAC   5.C. Motion - Navigasi Line - fFtT
     =MPEL   5.D. Motion - Pergi ke Line
@@ -32,6 +32,8 @@ Gunakan fitur searching dengan menekan "/" sesuai index di daftar isi.
 
     Misal:
     /=CARI
+    atau
+    /=NAVI
 
     n = Maju hasil pencarian
     N = Mundur hasil pencarian
@@ -40,9 +42,7 @@ Akan meloncat ke bagian "Pencarian Karakter".
 Untuk kembali lagi ke atas sini, tekan key "gg".
 Untuk keluar dari tutorial ini, tekan key "ZQ".
 
-Silahkan baca sekilas seluruh file ini, ingat "gg"!
-
-Gunakan fitur pencarian untuk memudahkan navigasi.
+Silahkan baca sekilas seluruh file ini, ingat "gg" untuk kembali!
 
 
 ===================================================================================
@@ -126,7 +126,7 @@ Tutorial singkat ini akan sering melibatkan NORMAL MODE.
 ------------------------
 
 Anggap insert mode seperti pada notepad, ketika kita mengetik
-suatu huruf di keyboard maka huruf tersebut akan masuk ke dalam
+suatu huruf pada keyboard maka huruf tersebut akan masuk ke dalam
 text editor.
 
 - Untuk masuk ke INSERT MODE, bisa menekan key "i".
@@ -140,7 +140,7 @@ text editor.
 Mode ini digunakan untuk melakukan selection / pemilihan block pada vim,
 yang kemudian bisa dilanjutkan melakukan operator ataupun motion.
 
-- Sama seperti NORMAL MODE, bisa menekan key "Esc" atau "Ctrl + [".
+- Sama seperti INSERT MODE, kembali ke NORMAL MODE tekan key "Esc" atau "Ctrl + [".
 
 
 ===================================================================================
@@ -164,6 +164,8 @@ Dari NORMAL MODE:
 
 ZZ - Sama dengan ":x"
 ZQ - Sama dengan ":q!"
+
+":" adalah COMMAND MODE.
 
 
 ===================================================================================
@@ -196,7 +198,7 @@ Ctrl + e    - Scroll text ke bawah 1 line
 
 
 --------------------------------------------
-5.A. =MNAA : Motion - Navigasi Dasar h-j-k-l
+5.A. =NAVI : Motion - Navigasi Dasar h-j-k-l
 --------------------------------------------
 
         k
@@ -233,6 +235,18 @@ Lalu tekan "j", ikuti huruf "o" sampai ke huruf "K", hindari ".".
 @---------@
 
 Coba juga dengan count. Misal: 4j 3l 2k 2l 4j 6h 2j
+
+Sekarang coba arahkan cursor di angka berikut secara berurutan.
+
+_______________
+______2________
+_______________
+_________4_____
+_______________
+___3___________
+_______________
+___________1___
+_______________
 
 
 ------------------------------------------
@@ -334,8 +348,8 @@ Text object adalah motion KHUSUS, hanya bisa digunakan dalam VISUAL MODE atau
 setelah menekan key operator.
 
 Terdapat 2 key text object, yaitu "i" dan "a".
-"i" akan memilih semua value DI DALAM text object.
-"a" akan memilih semua value DI LUAR text object, termasuk spasi / whitespace.
+"i" memilih semua value DI DALAM text object. (in)
+"a" memilih semua value DI LUAR text object, termasuk spasi / whitespace. (all)
 
 Motion ini dalah motion yang powerful.
 
@@ -356,7 +370,7 @@ Motion ini dalah motion yang powerful.
     [x][y]" - Memilih berdasarkan tanda petik dua
     [x][y]' - Memilih berdasarkan tanda petik
     [x][y]` - Memilih berdasarkan tanda backticks
-    [x][y]t - Memilih berdasarkan tag HTML
+    [x][y]t - Memilih berdasarkan tag XML (termasuk HTML)
 
 x = operator atau key "v"
 y = "i" atau "a"
@@ -454,8 +468,8 @@ m = Motion
 
 Seperti pada pengenalan "com", kita bisa menambah count pada operator.
 
-Setiap text yang dihapus menggunakan "d" & "x" akan masuk ke dalam buffer
-clipboard vim dan kita bisa paste menggunakan "p", jadi operator ini juga bisa
+Setiap text yang dihapus menggunakan "d" & "x" akan masuk ke dalam
+register vim ("") dan kita bisa paste menggunakan "p", jadi operator ini juga bisa
 digunakan untuk operasi cut-paste.
 
 Contoh:
@@ -505,8 +519,8 @@ mobil Budi membeli baru.
 --------------------------------------------
 
     r[x] - Replace karakter di mana cursor berada, diikuti karakter pengganti
-    R    - Replace karakter di mana cursor berada tanpa batasan sampai
-           kembali ke NORMAL MODE
+    R    - [REPLACE MODE]. Replace karakter di mana cursor berada tanpa batasan
+           sampai kembali ke NORMAL MODE
 
 x = Karakter / simbol
 
