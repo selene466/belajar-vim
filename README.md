@@ -15,5 +15,5 @@ $ git clone https://github.com/selene466/belajar-vim.git
 2. Buka dengan vim
 ```sh
 $ cd belajar-vim
-$ vim --no-plugin --clean -S dasar.vim
+$ vim --noplugin --clean -S dasar.vim
 ```
