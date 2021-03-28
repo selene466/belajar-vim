@@ -315,7 +315,7 @@ x = Nomor line (line number)
     b - Mundur ke awal suatu kata
     B - Mundur ke awal suatu kata, kata dalam artian terpisah spasi
     e - Pergi ke akhir suatu kata
-    e - Pergi ke akhir suatu kata, kata dalam artian terpisah spasi
+    E - Pergi ke akhir suatu kata, kata dalam artian terpisah spasi
 
 ~Contoh----@
 $data = "makan ayam";
